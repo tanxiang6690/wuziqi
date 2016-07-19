@@ -1,0 +1,249 @@
+
+*{
+  padding:0;
+  margin: 0;
+  list-style: none;
+  font-size: 12px;
+  font-family: Arial;
+}
+%center{
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom: 0;
+  margin: auto;
+}
+body{
+  background: url("./images/9d82d158ccbf6c81dfba537bbd3eb13532fa4097.jpg") no-repeat;
+  background-size: cover;
+}
+$width:600px;
+.qipan{
+  width: $width;
+  height: $width;
+  @extend %center;
+}
+.qizi{
+  position: relative;
+  z-index: 4;
+  float:left;
+  width:$width/15 - $width/100;
+  height:$width/15 - $width/100 ;
+  border-radius: 50%;
+  margin:$width/200
+}
+.hei{
+  background: url("./images/heiqi.png");
+  background-size: cover;
+}
+.bai{
+  background: url("./images/baiqi.png");
+  background-size: cover;
+}
+@for $i from 0 through 14{
+  .qipan b:nth-of-type(#{$i+1}){
+    top:$width/30 + $i*$width/15
+  }
+}
+.hang{
+  display: block;
+  height:1px;
+  width: $width - $width/15;
+  background:#fff;
+  position: absolute;
+  left:$width/30;
+  animation: cehua .5s ease forwards;
+  z-index: 1;
+}
+@for $i from 0 through 14{
+  .qipan i:nth-of-type(#{$i+1}){
+    left:$width/30 + $i*$width/15
+  }
+}
+.lie{
+  display: block;
+  width:1px;
+  height: $width - $width/15;
+  background:#fff;
+  position: absolute;
+  top:$width/30;
+  z-index: 1;
+  animation: liediao .5s ease forwards;
+}
+.qipan span{
+  display: block;
+  width: $width/60;
+  height:$width/60;
+  background: #000;
+  border-radius: 50%;
+  transform: translate3d(-45%,-45%,0);
+  animation: diaoluo .5s ease forwards;
+  position: absolute;
+  opacity: 0;
+  z-index: 2;
+
+
+  &:nth-of-type(1){
+    top:3.5*$width/15;
+    left:3.5*$width/15;
+  }
+  &:nth-of-type(2){
+    top:3.5*$width/15;
+    left:11.5*$width/15;
+
+  }
+  &:nth-of-type(3){
+    top:7.5*$width/15;
+    left:7.5*$width/15;
+  }
+  &:nth-of-type(4){
+    top:11.5*$width/15;
+    left:3.5*$width/15;
+  }
+  &:nth-of-type(5){
+    top:11.5*$width/15;
+    left:11.5*$width/15;
+  }
+}
+@for $i from 1 through 5{
+  .qipan span:nth-of-type(#{$i}){
+    animation-delay: $i*0.2s;
+  }
+}
+@keyframes diaoluo {
+  0%{
+    transform:translate3d(0,-1000px,0);
+    opacity: 0;
+  }
+  100%{
+    transform:translate3d(-45%,-45%,0);
+    opacity:1;
+  }
+}
+@keyframes cehua {
+  0%{
+    transform:translate3d(-1000px,0,0);
+    opacity: 0;
+  }
+  100%{
+    transform:translate3d(0,0,0);
+    opacity:1;
+  }
+}
+@keyframes liediao {
+  0%{
+    transform:translate3d(0,-1000px,0);
+    opacity: 0;
+  }
+  100%{
+    transform:translate3d(0,0,0);
+    opacity:1;
+  }
+}
+.qipan .baiying{
+  height: 100px;
+  width: 200px;
+  background: #f59200;
+  @extend  %center;
+  line-height:100px;
+  text-align: center;
+  box-shadow: 0 0 2px 2px #7d6262;
+  z-index: 1000;
+  font-size: 20px;
+  color: aliceblue;
+  display: none;
+}
+.left{
+  height: $width;
+  width: $width/3;
+  background: rgba(0,0,0,0.2);
+  position: absolute;
+  top: 0;
+  left: -$width/3;
+  overflow: hidden;
+  .renji,.renren, .restart, .instruction{
+    height:$width/20;
+    width: $width/10;
+    background: rgba(0,0,0,0.2);
+    float: left;
+    line-height:$width/20;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    padding: $width/60 $width/12;
+    margin:$width/60 $width/30 ;
+    color: #fff;
+    border-radius: $width/120;
+    transition:all 1s ease;
+  }
+  .shuomingshu{
+    width: $width/4;
+    background: rgba(0,0,0,0.2);
+    float: left;
+    padding: $width/40 $width/120;
+    margin:$width/60 $width/30 ;
+    border-radius: $width/120;
+    transition: all 0.8s ease;
+    display: block;
+    p{
+      margin: $width/120 0;
+      line-height:$width/30;
+      color: #fff;
+    }
+  }
+}
+.right{
+  height: $width;
+  width: $width/3;
+  background: rgba(0,0,0,0.2);
+  position: absolute;
+  top: 0;
+  left: $width;
+}
+.right .time{
+  width: 100%;
+  text-align: center;
+  padding: $width/60 0;
+  float: left;
+  color: aliceblue;
+  font-weight: bold;
+}
+.right .clock ul{
+  width: $width/4;
+  height: $width/4;
+  background: rgba(0,0,0,0.8);
+  border-radius: 50%;
+  overflow: hidden;
+  float: left;
+  margin: 0 $width/24;
+  position: relative;
+  li{
+    width:$width/300;
+    height: $width/70;
+    background: #BCBCBC;
+    transition: all 0.8s ease;
+    @extend %center;
+    &:nth-child(5n){
+        width:$width/300;
+        height:$width/50;
+      background: #fff;
+    }
+  }
+  #nowtime{
+    height:$width/20;
+    width:$width/10;
+    background: rgba(0,0,0,0);
+    @extend %center;
+    line-height:$width/20;
+    text-align: center;
+    color: #fff;
+  }
+}
+@for $i from 1 through 60{
+  .clock li:nth-child(#{$i}){
+    transform: rotateZ($i*6deg) translateY($width/8-$width/60);
+  }
+}
+
+
