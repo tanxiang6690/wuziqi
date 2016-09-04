@@ -17,10 +17,8 @@ $(function(){
     var kaiguan=true;
 
     var panduan=function(pos,biao){
-       var h= 1,s= 1,zx= 1,yx=1;
-       var tx, ty;
-
-
+        var h= 1,s= 1,zx= 1,yx=1;
+        var tx, ty;
         //横向
         tx=pos.x;ty=pos.y;
         while(biao[tx + '-' + (ty-1)]){
@@ -30,8 +28,6 @@ $(function(){
         while(biao[tx + '-' + (ty+1)]){
             h++;ty++;
         }
-
-
         //纵向
         tx=pos.x;ty=pos.y;
         while(biao[(tx-1) + '-' + ty]){
@@ -41,8 +37,6 @@ $(function(){
         while(biao[(tx+1)+ '-' + ty]){
             s++;tx++;
         }
-
-
         //左斜
         tx=pos.x;ty=pos.y;
         while(biao[(tx+1) + '-' + (ty-1)]){
@@ -52,8 +46,6 @@ $(function(){
         while(biao[(tx-1)+ '-' + (ty+1)]){
             zx++;tx--;ty++
         }
-
-
         //右斜
         tx=pos.x;ty=pos.y;
         while(biao[(tx+1) + '-' + (ty+1)]){
@@ -63,12 +55,11 @@ $(function(){
         while(biao[(tx-1)+ '-' + (ty-1)]){
             yx++;tx--;ty--;
         }
-
          return Math.max(h,s,zx,yx)
     }
     var ai=function(){
-            var max1=-Infinity;
-            var zuobiao1;
+        var max1=-Infinity;
+        var zuobiao1;
         for( var i in kongbai){
             var weixie=panduan(kongbai[i],hei);
             if(weixie>max1){
@@ -76,8 +67,8 @@ $(function(){
                 zuobiao1=kongbai[i];
             }
         }
-            var max2=-Infinity;
-            var zuobiao2;
+        var max2=-Infinity;
+        var zuobiao2;
         for( var i in kongbai){
             var weixie=panduan(kongbai[i],bai);
             if(weixie>max2){
@@ -111,7 +102,6 @@ $(function(){
     $(".qipan .restart").on("click",function(){
         window.location.reload();
     })
-
     $('.qizi').on('click',function(){
         audio.src="images/762.mp3";
         audio.play();
@@ -143,7 +133,7 @@ $(function(){
                 $(this).addClass('bai');
                 bai[pos.x + '-' + pos.y] = true;
                 if (panduan(pos, bai)>=5) {
-                    $(".qipan .baiying").text("黑棋赢了☺").slideToggle(1000);
+                    $(".qipan .baiying").text("白棋赢了☺").slideToggle(1000);
                     $('.qipan .qizi').off('click');
                 }
             }
